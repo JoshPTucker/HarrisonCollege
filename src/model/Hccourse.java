@@ -10,8 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="HCCOURSES")
-@NamedQuery(name="Hccours.findAll", query="SELECT h FROM Hccours h")
-public class Hccours implements Serializable {
+@NamedQuery(name="Hccourse.findAll", query="SELECT h FROM Hccourse h")
+public class Hccourse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,7 +25,7 @@ public class Hccours implements Serializable {
 
 	private String dept;
 
-	public Hccours() {
+	public Hccourse() {
 	}
 
 	public long getCourseid() {
