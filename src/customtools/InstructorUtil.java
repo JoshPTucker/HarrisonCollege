@@ -3,14 +3,17 @@ package customtools;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import model.Hcinstructor;
 
-public class DBoperations {
-	public static void insert() {
+
+
+public class InstructorUtil {
+	public static void insertInstructor(Hcinstructor instructor) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.persist();
+            em.persist(instructor);
             trans.commit();
         } catch (Exception e) {
             trans.rollback();
@@ -18,12 +21,12 @@ public class DBoperations {
             em.close();
         }
     }
-	public static void update() {
+	public static void updateInstructor(Hcinstructor instructor) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.merge();
+            em.merge(instructor);
             trans.commit();
         } catch (Exception e) {
             trans.rollback();

@@ -6,7 +6,8 @@ import javax.persistence.Persistence;
 //A comment goes here for pmd
 public class DBUtil {
 	// field
-	private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("HarrisonCollege");
+	private static final EntityManagerFactory EMF 
+	= Persistence.createEntityManagerFactory("HarrisonCollege");
 	// Empty constructor
 	public DBUtil(){
 		
