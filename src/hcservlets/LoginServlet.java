@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import customtools.StudentUtil;
 import customtools.UserUtil;
+import model.Hcstudent;
 import model.Hcuser;
 
 /**
@@ -53,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String nextURL = "/error.jsp";
 
 		Hcuser user = null;
-
+		Hcstudent student = null;
 		String action = "login";
 		if (action.equals("logout")) {
 			nextURL = "/logout.jsp";
@@ -61,10 +63,10 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			user = UserUtil.getUserByEmail(useremail);
 			if (UserUtil.isValidUser(user) && userpassword.equals(user.getPassword())) {
-
+				student = StudentUtil.getStudentByUserId(user.getUserid());
 				UserUtil.update(user);
 				session.setAttribute("user", user);
-
+				session.setAttribute("student", student);
 				nextURL = "/home.jsp";
 			} else {
 				nextURL = "/createaccount.jsp";

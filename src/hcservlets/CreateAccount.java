@@ -28,7 +28,8 @@ public class CreateAccount extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request
+	 * , HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -36,25 +37,25 @@ public class CreateAccount extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request
+	 * , HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String firstname= request.getParameter("firstname");
-		String lastname= request.getParameter("lastname");
-		String username= request.getParameter("username");
-		String email= request.getParameter("email");
-		String password= request.getParameter("password");
-		String major=request.getParameter("major");
-		String entryyear=request.getParameter("entryyear");
+		final String firstname= request.getParameter("firstname");
+		final String lastname= request.getParameter("lastname");
+		final String username= request.getParameter("username");
+		final String email= request.getParameter("email");
+		final String password= request.getParameter("password");
+		final String major=request.getParameter("major");
+		final String entryyear=request.getParameter("entryyear");
 		Hcuser user = new Hcuser();
 		user.setEmail(email);
 		user.setFirstname(firstname);
 		user.setLastname(lastname);
 		user.setPassword(password);
 		user.setUsername(username);
-		System.out.println(user.getFirstname());
 		UserUtil.insert(user);
 		Hcstudent student = new Hcstudent();
 		student.setMajor(major);

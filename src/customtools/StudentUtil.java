@@ -48,11 +48,11 @@ public class StudentUtil {
 		}
 	}
 
-	public static Hcstudent getUserByEmail(String studentid) {
+	public static Hcstudent getStudentByUserId(long userid) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select u from Hcstudent u " + "where u.studentid= :studentid";
+		String qString = "Select u from Hcstudent u " + "where u.hcuser.userid= :userid";
 		TypedQuery<Hcstudent> q = em.createQuery(qString, Hcstudent.class);
-		q.setParameter("studentid", studentid);
+		q.setParameter("userid", userid);
 		Hcstudent student = null;
 		try {
 			student = q.getSingleResult();
