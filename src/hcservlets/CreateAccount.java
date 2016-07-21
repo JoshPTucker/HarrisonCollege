@@ -38,6 +38,7 @@ public class CreateAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String firstname= request.getParameter("firstname");
 		String lastname= request.getParameter("lastname");
 		String username= request.getParameter("username");
@@ -49,8 +50,9 @@ public class CreateAccount extends HttpServlet {
 		user.setLastname(lastname);
 		user.setPassword(password);
 		user.setUsername(username);
+		System.out.println(user.getFirstname());
 		UserUtil.insert(user);
-		String nextURL="/login.jsp";
+		String nextURL="./login.jsp";
 		response.sendRedirect(request.getContextPath() + nextURL);
 	}
 
