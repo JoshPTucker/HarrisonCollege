@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import customtools.StudentUtil;
 import customtools.UserUtil;
+import model.Hcstudent;
 import model.Hcuser;
 
 /**
@@ -44,6 +46,8 @@ public class CreateAccount extends HttpServlet {
 		String username= request.getParameter("username");
 		String email= request.getParameter("email");
 		String password= request.getParameter("password");
+		String major=request.getParameter("major");
+		String entryyear=request.getParameter("entryyear");
 		Hcuser user = new Hcuser();
 		user.setEmail(email);
 		user.setFirstname(firstname);
@@ -52,7 +56,12 @@ public class CreateAccount extends HttpServlet {
 		user.setUsername(username);
 		System.out.println(user.getFirstname());
 		UserUtil.insert(user);
-		String nextURL="./login.jsp";
+		Hcstudent student = new Hcstudent();
+		student.setMajor(major);
+		student.setHcuser(user);
+		student.setEntryyear(entryyear);
+		StudentUtil.insert(student);
+		String nextURL="/login.jsp";
 		response.sendRedirect(request.getContextPath() + nextURL);
 	}
 

@@ -39,8 +39,8 @@
 	<form onsubmit="return validateLogin()" action="LoginServlet"
 		method="post">
 		<h4>Enter your email and password</h4>
-		<input type="text" name="email" id="email" value=""></input> <input
-			type="password" name="password" id="password" value=""></input> <input
+		<input type="text" name="email" id="email" value="" placeholder="email"></input> <input
+			type="password" name="password" id="password" value="" placeholder="password"></input> <input
 			type="hidden" name="action" id="action" value="login"></input> <input
 			type="submit" name="submit" id="submit" value="Login"></input>
 	</form>
