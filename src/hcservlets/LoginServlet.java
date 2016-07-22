@@ -46,9 +46,9 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// this page does not require user to be logged in
-
+		
 		HttpSession session = request.getSession();
-
+		int count =0;
 		String useremail = request.getParameter("email");
 		String userpassword = request.getParameter("password");
 
@@ -59,7 +59,6 @@ public class LoginServlet extends HttpServlet {
 		String action = "login";
 		if (action.equals("logout")) {
 			nextURL = "/logout.jsp";
-
 		} else {
 			user = UserUtil.getUserByEmail(useremail);
 			if (UserUtil.isValidUser(user) && userpassword.equals(user.getPassword())) {
@@ -68,7 +67,13 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", user);
 				//session.setAttribute("student", student);
 				nextURL = "/home.jsp";
-			} else {
+			} else if(count <=3) {
+				nextURL = "/login.jsp";
+				count ++;
+			}else if (count==3){
+				nextURL = "/createaccount.jsp";
+				count =0;
+			}else{
 				nextURL = "/createaccount.jsp";
 			}
 
