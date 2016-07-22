@@ -36,6 +36,7 @@
 
 </head>
 <body>
+<jsp:include page="navbar.jsp"></jsp:include>
 	<form onsubmit="return validateLogin()" action="LoginServlet"
 		method="post">
 		<h4>Enter your email and password</h4>

@@ -1,5 +1,7 @@
 package customtools;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
@@ -49,7 +51,7 @@ public class ClassUtil {
 			em.close();
 		}
 	}
-	public static Hcclass getlassByUserId(long classid) {
+	public static Hcclass getClassByClassId(long classid) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String qString = "Select c from Hcclass c " + "where c.classid= :classid";
 		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
@@ -63,5 +65,20 @@ public class ClassUtil {
 			em.close();
 		}
 		return hcclass;
+	}
+	public static List<Hcclass> getClassesByInstructor(long instructorid) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "Select c from Hcclass c " + "where c.hcinstructor.instructorid= :instructorid";
+		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
+		q.setParameter("instructorid", instructorid);
+		List<Hcclass> hcclasses = null;
+		try {
+			hcclasses = q.getResultList();
+		} catch (NoResultException e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		return hcclasses;
 	}
 }
