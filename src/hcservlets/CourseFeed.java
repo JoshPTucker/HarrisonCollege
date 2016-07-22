@@ -1,11 +1,18 @@
 package hcservlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import customtools.CourseUtil;
+import model.Hccourse;
 
 /**
  * Servlet implementation class CourseFeed
@@ -35,7 +42,13 @@ public class CourseFeed extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession session = request.getSession();
+		ArrayList<Hccourse> courses = new ArrayList<Hccourse>();
+		List<Hccourse> c = CourseUtil.allCourses();
+		courses.addAll(c);
+		session.setAttribute("courses", courses);
+		String nextURL="/coursefeed.jsp";
+		response.sendRedirect(request.getContextPath() + nextURL);
 	}
 
 }

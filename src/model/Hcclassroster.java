@@ -14,7 +14,7 @@ public class Hcclassroster implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCCLASSROSTER_ROSTERID_GENERATOR", sequenceName="HCCLASSROSTER_SEQ")
+	@SequenceGenerator(name="HCCLASSROSTER_ROSTERID_GENERATOR", sequenceName="HCCLASSROSTER_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSROSTER_ROSTERID_GENERATOR")
 	private long rosterid;
 

@@ -29,12 +29,13 @@
         <li class="active"><a href="./home.jsp">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="./login.jsp">login</a></li>
         <li><a href="./userprofile.jsp">Profile</a></li>
+        <li><a href="./coursefeed.jsp">Courses</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user.firstname} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="./coursefeed.jsp">Courses</a></li>
             <li><a href="#">Your classes</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="./logout.jsp">logout</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>

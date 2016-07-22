@@ -16,7 +16,7 @@ public class Hcstudent implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCSTUDENTS_STUDENTID_GENERATOR", sequenceName="HCSTUDENTS_SEQ")
+	@SequenceGenerator(name="HCSTUDENTS_STUDENTID_GENERATOR", sequenceName="HCSTUDENTS_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCSTUDENTS_STUDENTID_GENERATOR")
 	private long studentid;
 

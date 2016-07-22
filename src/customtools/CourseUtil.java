@@ -56,9 +56,10 @@ public class CourseUtil {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String qString = "Select c from Hccourse c " + "where c.courseid= :courseid";
 		TypedQuery<Hccourse> q = em.createQuery(qString, Hccourse.class);
-		q.setParameter("courseid", courseid);
+		
 		Hccourse course = null;
 		try {
+			q.setParameter("courseid", courseid);
 			course = q.getSingleResult();
 		} catch (NoResultException e) {
 			System.out.println(e);
@@ -70,7 +71,6 @@ public class CourseUtil {
 	 public static List<Hccourse> allCourses (){
 	        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 	        String qString = "select c from Hccourse c";
-	        
 	        List<Hccourse> courses = null;
 	        try{
 	            TypedQuery<Hccourse> query = em.createQuery(qString,Hccourse.class);

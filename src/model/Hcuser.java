@@ -15,7 +15,7 @@ public class Hcuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCUSER_USERID_GENERATOR", sequenceName="HCUSER_SEQ")
+	@SequenceGenerator(name="HCUSER_USERID_GENERATOR", sequenceName="HCUSER_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCUSER_USERID_GENERATOR")
 	private long userid;
 

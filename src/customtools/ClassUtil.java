@@ -68,9 +68,38 @@ public class ClassUtil {
 	}
 	public static List<Hcclass> getClassesByInstructor(long instructorid) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select c from Hcclass c " + "where c.hcinstructor.instructorid= :instructorid";
+		String qString = "Select c from Hcclass c where c.hcinstructor.instructorid= :instructorid";
 		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
 		q.setParameter("instructorid", instructorid);
+		List<Hcclass> hcclasses = null;
+		try {
+			hcclasses = q.getResultList();
+		} catch (NoResultException e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		return hcclasses;
+	}
+	public static List<Hcclass> getClassesByCourseId(long courseid) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "Select c from Hcclass c where c.hccours.courseid= :courseid";
+		List<Hcclass> hcclasses = null;
+		try {
+			TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
+			q.setParameter("courseid", courseid);
+			hcclasses = q.getResultList();
+		} catch (NoResultException e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		return hcclasses;
+	}
+	public static List<Hcclass> getClasses() {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "Select c from Hcclass c ";
+		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
 		List<Hcclass> hcclasses = null;
 		try {
 			hcclasses = q.getResultList();
