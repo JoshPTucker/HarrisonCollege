@@ -51,11 +51,11 @@ public class ClassUtil {
 			em.close();
 		}
 	}
-	public static Hcclass getClassByClassId(long classid) {
+	public static Hcclass getClassByCrn(long crn) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select c from Hcclass c " + "where c.classid= :classid";
+		String qString = "Select c from Hcclass c where c.crn= :crn";
 		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
-		q.setParameter("classid", classid);
+		q.setParameter("crn", crn);
 		Hcclass hcclass = null;
 		try {
 			hcclass = q.getSingleResult();

@@ -12,21 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import customtools.ClassUtil;
-import customtools.CourseUtil;
+import customtools.RosterUtil;
+import customtools.StudentUtil;
 import model.Hcclass;
-import model.Hccourse;
+import model.Hcclassroster;
+import model.Hcstudent;
 
 /**
- * Servlet implementation class CourseProfile
+ * Servlet implementation class ClassFeed
  */
-@WebServlet("/CourseProfile")
-public class CourseProfile extends HttpServlet {
+@WebServlet("/ClassFeed")
+public class ClassFeed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CourseProfile() {
+    public ClassFeed() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +38,7 @@ public class CourseProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,15 +47,17 @@ public class CourseProfile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String id=request.getParameter("viewcourseid");
-		long courseid=Integer.parseInt(id);
-		Hccourse currcourse= CourseUtil.getCourseById(courseid);
-		session.setAttribute("currcourse", currcourse);
-		ArrayList<Hcclass> classes=new ArrayList<Hcclass>();
-		List<Hcclass> c = ClassUtil.getClassesByCourseId(courseid);
-		classes.addAll(c);
-		session.setAttribute("classes", classes);
-		String nextURL="/courseprofile.jsp";
+		Hcstudent student = null;
+		String uid =request.getParameter("curruserid");
+		long userid = Integer.parseInt(uid);
+		student = StudentUtil.getStudentByUserId(userid);
+		
+		ArrayList<Hcclassroster> studentclasses=new ArrayList<Hcclassroster>();
+		List<Hcclassroster> r = RosterUtil.getRosterByStudentId(student.getStudentid());
+	
+		studentclasses.addAll(r);
+		session.setAttribute("studentclasses", studentclasses);
+		String nextURL="/classfeed.jsp";
 		response.sendRedirect(request.getContextPath() + nextURL);
 	}
 

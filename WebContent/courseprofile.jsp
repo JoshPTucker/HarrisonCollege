@@ -36,7 +36,7 @@
 				<tr>
 					<th>Course reference</th>
 					<th>Instructor</th>
-					<th></th>
+					<th>Times</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -46,9 +46,9 @@
 						<td><c:out value="${classes.crn}" /></td>
 						<td><c:out value="${classes.hcinstructor.firstname}"/></td>
 						<td><c:out value="${classes.times}" /></td>
-						<td><form>
+						<td><form action="ClassProfile" method="post">
 						<input type="hidden" id="classcrn" name="classcrn" value="${classes.crn}" />
-						<input type="submit" id="submit" name="submit" value="enroll"/>
+						<input type="submit" id="submit" name="submit" value="details"/>
 						</form></td>
 					</tr>
 				</c:forEach>

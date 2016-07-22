@@ -6,6 +6,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import customtools.ClassUtil;
+import customtools.RosterUtil;
+import customtools.StudentUtil;
+import model.Hcclass;
+import model.Hcclassroster;
+import model.Hcstudent;
 
 /**
  * Servlet implementation class Enroll
@@ -27,7 +35,7 @@ public class Enroll extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -35,7 +43,21 @@ public class Enroll extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		Hcstudent student = null;
+		Hcclassroster roster = new Hcclassroster();
+		Hcclass hcclass = null;
+		String uid =request.getParameter("curruserid");
+		long userid = Integer.parseInt(uid);
+		student = StudentUtil.getStudentByUserId(userid);
+		String crns = request.getParameter("classcrn");
+		long crn=Integer.parseInt(crns);
+		hcclass=ClassUtil.getClassByCrn(crn);
+		roster.setHcclass(hcclass);
+		roster.setHcstudent(student);
+		RosterUtil.insertRoster(roster);
+		String nextURL="/classfeed.jsp";
+		response.sendRedirect(request.getContextPath() + nextURL);
 	}
 
 }

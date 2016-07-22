@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
 <div>
-here you can view all classes youre taking
+<h1></h1>
 </div>
 <div>
 
