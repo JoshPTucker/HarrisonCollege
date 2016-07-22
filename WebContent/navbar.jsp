@@ -37,7 +37,7 @@
             <li><a href="./classfeed.jsp">Your classes</a></li>
             <li><a href="./logout.jsp">logout</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="./webmail.jsp">Send email</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
