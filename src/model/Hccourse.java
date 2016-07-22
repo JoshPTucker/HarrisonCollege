@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -21,9 +23,17 @@ public class Hccourse implements Serializable {
 
 	private String coursedescription;
 
-	private String crn;
+	private String coursename;
 
-	private String dept;
+	private BigDecimal credits;
+
+	private BigDecimal deptnumber;
+
+	private BigDecimal subjectcode;
+
+	//bi-directional many-to-one association to Hcclass
+	@OneToMany(mappedBy="hccours")
+	private List<Hcclass> hcclasses;
 
 	public Hccourse() {
 	}
@@ -44,20 +54,58 @@ public class Hccourse implements Serializable {
 		this.coursedescription = coursedescription;
 	}
 
-	public String getCrn() {
-		return this.crn;
+	public String getCoursename() {
+		return this.coursename;
 	}
 
-	public void setCrn(String crn) {
-		this.crn = crn;
+	public void setCoursename(String coursename) {
+		this.coursename = coursename;
 	}
 
-	public String getDept() {
-		return this.dept;
+	public BigDecimal getCredits() {
+		return this.credits;
 	}
 
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setCredits(BigDecimal credits) {
+		this.credits = credits;
+	}
+
+	public BigDecimal getDeptnumber() {
+		return this.deptnumber;
+	}
+
+	public void setDeptnumber(BigDecimal deptnumber) {
+		this.deptnumber = deptnumber;
+	}
+
+	public BigDecimal getSubjectcode() {
+		return this.subjectcode;
+	}
+
+	public void setSubjectcode(BigDecimal subjectcode) {
+		this.subjectcode = subjectcode;
+	}
+
+	public List<Hcclass> getHcclasses() {
+		return this.hcclasses;
+	}
+
+	public void setHcclasses(List<Hcclass> hcclasses) {
+		this.hcclasses = hcclasses;
+	}
+
+	public Hcclass addHcclass(Hcclass hcclass) {
+		getHcclasses().add(hcclass);
+		hcclass.setHccours(this);
+
+		return hcclass;
+	}
+
+	public Hcclass removeHcclass(Hcclass hcclass) {
+		getHcclasses().remove(hcclass);
+		hcclass.setHccours(null);
+
+		return hcclass;
 	}
 
 }

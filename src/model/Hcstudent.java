@@ -22,6 +22,10 @@ public class Hcstudent implements Serializable {
 
 	private String entryyear;
 
+	private String firstname;
+
+	private String lastname;
+
 	private String major;
 
 	//bi-directional many-to-one association to Hcclassroster
@@ -50,6 +54,22 @@ public class Hcstudent implements Serializable {
 
 	public void setEntryyear(String entryyear) {
 		this.entryyear = entryyear;
+	}
+
+	public String getFirstname() {
+		return this.firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return this.lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getMajor() {

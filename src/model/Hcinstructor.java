@@ -22,6 +22,10 @@ public class Hcinstructor implements Serializable {
 
 	private BigDecimal deptnumber;
 
+	private String firstname;
+
+	private String lastname;
+
 	private BigDecimal officenumber;
 
 	//bi-directional many-to-one association to Hcclass
@@ -50,6 +54,22 @@ public class Hcinstructor implements Serializable {
 
 	public void setDeptnumber(BigDecimal deptnumber) {
 		this.deptnumber = deptnumber;
+	}
+
+	public String getFirstname() {
+		return this.firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return this.lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public BigDecimal getOfficenumber() {

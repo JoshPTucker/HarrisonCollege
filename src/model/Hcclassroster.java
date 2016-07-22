@@ -16,9 +16,7 @@ public class Hcclassroster implements Serializable {
 	@Id
 	@SequenceGenerator(name="HCCLASSROSTER_ROSTERID_GENERATOR", sequenceName="HCCLASSROSTER_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSROSTER_ROSTERID_GENERATOR")
-	private String rosterid;
-
-	private String classname;
+	private long rosterid;
 
 	//bi-directional many-to-one association to Hcclass
 	@ManyToOne
@@ -33,20 +31,12 @@ public class Hcclassroster implements Serializable {
 	public Hcclassroster() {
 	}
 
-	public String getRosterid() {
+	public long getRosterid() {
 		return this.rosterid;
 	}
 
-	public void setRosterid(String rosterid) {
+	public void setRosterid(long rosterid) {
 		this.rosterid = rosterid;
-	}
-
-	public String getClassname() {
-		return this.classname;
-	}
-
-	public void setClassname(String classname) {
-		this.classname = classname;
 	}
 
 	public Hcclass getHcclass() {

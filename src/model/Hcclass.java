@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -22,12 +23,14 @@ public class Hcclass implements Serializable {
 
 	private String crn;
 
-	private String description;
+	private BigDecimal subjectcode;
 
-	private String location;
+	private String times;
 
-	@Column(name="\"TIME\"")
-	private String time;
+	//bi-directional many-to-one association to Hccourse
+	@ManyToOne
+	@JoinColumn(name="COURSEID")
+	private Hccourse hccours;
 
 	//bi-directional many-to-one association to Hcinstructor
 	@ManyToOne
@@ -37,6 +40,11 @@ public class Hcclass implements Serializable {
 	//bi-directional many-to-one association to Hcclassroster
 	@OneToMany(mappedBy="hcclass")
 	private List<Hcclassroster> hcclassrosters;
+
+	//bi-directional many-to-one association to Hcclassroom
+	@ManyToOne
+	@JoinColumn(name="CLASSROOMID")
+	private Hcclassroom hcclassroom;
 
 	public Hcclass() {
 	}
@@ -57,28 +65,28 @@ public class Hcclass implements Serializable {
 		this.crn = crn;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public BigDecimal getSubjectcode() {
+		return this.subjectcode;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSubjectcode(BigDecimal subjectcode) {
+		this.subjectcode = subjectcode;
 	}
 
-	public String getLocation() {
-		return this.location;
+	public String getTimes() {
+		return this.times;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setTimes(String times) {
+		this.times = times;
 	}
 
-	public String getTime() {
-		return this.time;
+	public Hccourse getHccours() {
+		return this.hccours;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setHccours(Hccourse hccours) {
+		this.hccours = hccours;
 	}
 
 	public Hcinstructor getHcinstructor() {
@@ -109,6 +117,14 @@ public class Hcclass implements Serializable {
 		hcclassroster.setHcclass(null);
 
 		return hcclassroster;
+	}
+
+	public Hcclassroom getHcclassroom() {
+		return this.hcclassroom;
+	}
+
+	public void setHcclassroom(Hcclassroom hcclassroom) {
+		this.hcclassroom = hcclassroom;
 	}
 
 }
