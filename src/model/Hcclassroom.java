@@ -17,7 +17,7 @@ public class Hcclassroom implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCCLASSROOMS_CLASSROOMID_GENERATOR", sequenceName="HCCLASSROOMS_SEQ", allocationSize=1)
+	@SequenceGenerator(name="HCCLASSROOMS_CLASSROOMID_GENERATOR", sequenceName="HCCLASSROOMS_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSROOMS_CLASSROOMID_GENERATOR")
 	private long classroomid;
 

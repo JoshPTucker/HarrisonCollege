@@ -1,22 +1,19 @@
 package customtools;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import customtools.DBUtil;
-import model.Hccourse;
+import model.Hcclass;
 
-public class CourseUtil {
-	public static void insertCourse(Hccourse course) {
+public class ClassUtil {
+	public static void insertClass(Hcclass hcclass) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.persist(course);
+            em.persist( hcclass);
             trans.commit();
         } catch (Exception e) {
             trans.rollback();
@@ -24,12 +21,12 @@ public class CourseUtil {
             em.close();
         }
     }
-	public static void updateCourse(Hccourse course) {
+	public static void updateInstructor(Hcclass hcclass) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.merge(course);
+            em.merge(hcclass);
             trans.commit();
         } catch (Exception e) {
             trans.rollback();
@@ -38,12 +35,12 @@ public class CourseUtil {
         }
     }
 
-	public static void delete(Hccourse course) {
+	public static void delete(Hcclass hcclass) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		try {
 			trans.begin();
-			em.remove(em.merge(course));
+			em.remove(em.merge(hcclass));
 			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -52,36 +49,19 @@ public class CourseUtil {
 			em.close();
 		}
 	}
-	public static Hccourse getCourseById(long courseid) {
+	public static Hcclass getlassByUserId(long classid) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "Select c from Hccourse c " + "where c.courseid= :courseid";
-		TypedQuery<Hccourse> q = em.createQuery(qString, Hccourse.class);
-		q.setParameter("courseid", courseid);
-		Hccourse course = null;
+		String qString = "Select c from Hcclass c " + "where c.classid= :classid";
+		TypedQuery<Hcclass> q = em.createQuery(qString, Hcclass.class);
+		q.setParameter("classid", classid);
+		Hcclass hcclass = null;
 		try {
-			course = q.getSingleResult();
+			hcclass = q.getSingleResult();
 		} catch (NoResultException e) {
 			System.out.println(e);
 		} finally {
 			em.close();
 		}
-		return course;
+		return hcclass;
 	}
-	 public static List<Hccourse> allCourses (){
-	        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-	        String qString = "select c from Hccourse c";
-	        
-	        List<Hccourse> courses = null;
-	        try{
-	            TypedQuery<Hccourse> query = em.createQuery(qString,Hccourse.class);
-	            courses = query.getResultList();
-
-	        }catch (Exception e){
-	            e.printStackTrace();
-	        }
-	        finally{
-	                em.close();
-	            }
-	        return courses;
-	    }
 }

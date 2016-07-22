@@ -17,7 +17,7 @@ public class Hccourse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCCOURSES_COURSEID_GENERATOR", sequenceName="HCCOURSES_SEQ", allocationSize=1)
+	@SequenceGenerator(name="HCCOURSES_COURSEID_GENERATOR", sequenceName="HCCOURSES_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCOURSES_COURSEID_GENERATOR")
 	private long courseid;
 

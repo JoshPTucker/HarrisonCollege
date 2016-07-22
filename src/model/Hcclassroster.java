@@ -14,13 +14,13 @@ public class Hcclassroster implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCCLASSROSTER_ROSTERID_GENERATOR", sequenceName="HCCLASSROSTER_SEQ", allocationSize=1)
+	@SequenceGenerator(name="HCCLASSROSTER_ROSTERID_GENERATOR", sequenceName="HCCLASSROSTER_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSROSTER_ROSTERID_GENERATOR")
 	private long rosterid;
 
 	//bi-directional many-to-one association to Hcclass
 	@ManyToOne
-	@JoinColumn(name="CLASSID")
+	@JoinColumn(name="CRN")
 	private Hcclass hcclass;
 
 	//bi-directional many-to-one association to Hcstudent

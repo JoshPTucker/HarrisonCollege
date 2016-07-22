@@ -17,15 +17,18 @@ public class Hcclass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCCLASSES_CLASSID_GENERATOR", sequenceName="HCCLASSES_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSES_CLASSID_GENERATOR")
-	private long classid;
-
-	private String crn;
+	@SequenceGenerator(name="HCCLASSES_CRN_GENERATOR", sequenceName="HCCLASSES_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCCLASSES_CRN_GENERATOR")
+	private long crn;
 
 	private BigDecimal subjectcode;
 
 	private String times;
+
+	//bi-directional many-to-one association to Hcclassroom
+	@ManyToOne
+	@JoinColumn(name="CLASSROOMID")
+	private Hcclassroom hcclassroom;
 
 	//bi-directional many-to-one association to Hccourse
 	@ManyToOne
@@ -41,27 +44,14 @@ public class Hcclass implements Serializable {
 	@OneToMany(mappedBy="hcclass")
 	private List<Hcclassroster> hcclassrosters;
 
-	//bi-directional many-to-one association to Hcclassroom
-	@ManyToOne
-	@JoinColumn(name="CLASSROOMID")
-	private Hcclassroom hcclassroom;
-
 	public Hcclass() {
 	}
 
-	public long getClassid() {
-		return this.classid;
-	}
-
-	public void setClassid(long classid) {
-		this.classid = classid;
-	}
-
-	public String getCrn() {
+	public long getCrn() {
 		return this.crn;
 	}
 
-	public void setCrn(String crn) {
+	public void setCrn(long crn) {
 		this.crn = crn;
 	}
 
@@ -79,6 +69,14 @@ public class Hcclass implements Serializable {
 
 	public void setTimes(String times) {
 		this.times = times;
+	}
+
+	public Hcclassroom getHcclassroom() {
+		return this.hcclassroom;
+	}
+
+	public void setHcclassroom(Hcclassroom hcclassroom) {
+		this.hcclassroom = hcclassroom;
 	}
 
 	public Hccourse getHccours() {
@@ -117,14 +115,6 @@ public class Hcclass implements Serializable {
 		hcclassroster.setHcclass(null);
 
 		return hcclassroster;
-	}
-
-	public Hcclassroom getHcclassroom() {
-		return this.hcclassroom;
-	}
-
-	public void setHcclassroom(Hcclassroom hcclassroom) {
-		this.hcclassroom = hcclassroom;
 	}
 
 }
