@@ -52,9 +52,7 @@ public class DropClass extends HttpServlet {
 		student = StudentUtil.getStudentByUserId(userid);
 		String crns = request.getParameter("classcrn");
 		long crn=Integer.parseInt(crns);
-		hcclass=ClassUtil.getClassByCrn(crn);
-		roster.setHcclass(hcclass);
-		roster.setHcstudent(student);
+		roster=RosterUtil.getRosterByCrnAndStudentid(student.getStudentid(), crn);
 		RosterUtil.deleteRoster(roster);
 		String nextURL="/home.jsp";
 		response.sendRedirect(request.getContextPath() + nextURL);

@@ -82,4 +82,20 @@ public class RosterUtil {
 		}
 		return roster;
 	}
+public static Hcclassroster getRosterByCrnAndStudentid(long studentid,long crn){
+	EntityManager em = DBUtil.getEmFactory().createEntityManager();
+	String qString = "Select r from Hcclassroster r where r.hcstudent.studentid= :studentid and r.hcclass.crn= :crn";
+	Hcclassroster roster = null;
+	try {
+		TypedQuery<Hcclassroster> q = em.createQuery(qString, Hcclassroster.class);
+		q.setParameter("studentid", studentid);
+		q.setParameter("crn", crn);
+		roster = q.getSingleResult();
+	} catch (NoResultException e) {
+		System.out.println(e);
+	} finally {
+		em.close();
+	}
+	return roster;
+}
 }
